@@ -1,6 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-import { Pool } from 'pg';
+// Static imports removed to prevent Edge runtime errors.
+// Dynamic imports are used inside the register function.
 
 export async function register() {
   if (process.env.NEXT_RUNTIME === 'nodejs') {
@@ -20,6 +19,10 @@ export async function register() {
     }
 
     try {
+      const fs = await import('fs');
+      const path = await import('path');
+      const { Pool } = await import('pg');
+
       const sqlPath = path.resolve(process.cwd(), 'src/db/schema.sql');
       const sql = fs.readFileSync(sqlPath, 'utf8');
 
