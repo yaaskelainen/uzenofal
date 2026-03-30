@@ -47,6 +47,7 @@ export function MessageItem({ message, onDeleteSuccess }: Props) {
           onClick={handleDelete}
           disabled={loading}
           aria-label={`Törlés id ${message.id}`}
+          className="delete-btn"
         >
           {loading ? '...' : 'Törlés'}
         </button>
