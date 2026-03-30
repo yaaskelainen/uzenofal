@@ -19,19 +19,15 @@ export async function register() {
     }
 
     try {
-      const fs = await import('fs');
-      const path = await import('path');
+      const { SCHEMA_SQL } = await import('./db/schema');
       const { Pool } = await import('pg');
 
-      const sqlPath = path.resolve(process.cwd(), 'src/db/schema.sql');
-      const sql = fs.readFileSync(sqlPath, 'utf8');
-
-      console.log('🔄 [DB INIT] Attempting to run idempotent migration (schema.sql)...');
+      console.log('🔄 [DB INIT] Attempting to run idempotent migration...');
       
       const pool = new Pool({ connectionString });
       
-      // Execute the parsed SQL script
-      await pool.query(sql);
+      // Execute the bundled SQL script
+      await pool.query(SCHEMA_SQL);
 
       console.log('✅ [DB INIT] Database synced successfully.');
       await pool.end();

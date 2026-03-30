@@ -1,4 +1,4 @@
--- 1. Create the messages table if it doesn't exist
+export const SCHEMA_SQL = `-- 1. Create the messages table if it doesn't exist
 CREATE TABLE IF NOT EXISTS public.messages (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   content TEXT NOT NULL,
@@ -24,4 +24,4 @@ BEGIN
         WITH CHECK (true);
     END IF;
 END
-$$;
+$$;`;
