@@ -24,7 +24,12 @@ export async function register() {
 
       console.log('🔄 [DB INIT] Attempting to run idempotent migration...');
       
-      const pool = new Pool({ connectionString });
+      const pool = new Pool({ 
+        connectionString,
+        ssl: {
+          rejectUnauthorized: false
+        }
+      });
       
       // Execute the bundled SQL script
       await pool.query(SCHEMA_SQL);
