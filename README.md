@@ -75,10 +75,15 @@ We follow a strict Red-Green-Refactor cycle.
 3. **Add Supabase Integration**:
    - Go to the **Storage** tab in your Project Dashboard.
    - Click **Connect Database** and select **Supabase**.
-   - Vercel will automatically inject `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `POSTGRES_URL`.
+   - Vercel will automatically inject `SUPABASE_URL`, `SUPABASE_ANON_KEY`.
 4. **Environment Variable**:
    - In Vercel Settings -> Environment Variables, add `DB_ADAPTER=supabase`.
-5. **Redeploy**: Deployment will automatically trigger the `instrumentation.ts` hook, which runs the SQL schema setup.
+5. **Set up the Database Schema**:
+   Since Next.js serverless functions are ephemeral, it is best practice to manage the database schema directly via the Supabase Dashboard:
+   - Open your project on the [Supabase Dashboard](https://supabase.com).
+   - Go to **SQL Editor** -> **New Query**.
+   - Paste and run the SQL content from `src/db/schema.sql` (if you kept it) or simply create the `messages` table with `id` (uuid), `content` (text), and `created_at` (timestamptz).
+   - This ensures 100% secure TLS/SSL connectivity via the native Supabase SDK without any runtime certificate workarounds.
 
 ---
 
