@@ -1,0 +1,80 @@
+PASS unit-integration __tests__/unit/adapters/supabaseMessageRepository.test.ts (7.553 s)
+PASS unit-integration __tests__/unit/service/messageService.test.ts (8.062 s)
+PASS unit-integration __tests__/unit/adapters/inMemoryMessageRepository.test.ts
+PASS unit-integration __tests__/unit/domain/messageTypes.test.ts (8.42 s)
+FAIL unit-integration __tests__/unit/architecture/importGuards.test.ts (8.677 s)
+  ● Architectural Constraints - Import Guards › No file outside factory imports SupabaseMessageRepository
+
+    ENOENT: no such file or directory, scandir 'C:\Users\hubne\Desktop\Feladat\teszt-feladat\__tests__\src'
+
+    [0m [90m 3 |[39m
+     [90m 4 |[39m [36mfunction[39m findFiles(dir[33m:[39m string[33m,[39m fileList[33m:[39m string[] [33m=[39m []) {
+    [31m[1m>[22m[39m[90m 5 |[39m   [36mconst[39m files [33m=[39m fs[33m.[39mreaddirSync(dir)[33m;[39m
+     [90m   |[39m                    [31m[1m^[22m[39m
+     [90m 6 |[39m   
+     [90m 7 |[39m   [36mfor[39m ([36mconst[39m file [36mof[39m files) {
+     [90m 8 |[39m     [36mconst[39m filePath [33m=[39m path[33m.[39mjoin(dir[33m,[39m file)[33m;[39m[0m
+
+      at findFiles (__tests__/unit/architecture/importGuards.test.ts:5:20)
+      at Object.<anonymous> (__tests__/unit/architecture/importGuards.test.ts:28:22)
+
+  ● Architectural Constraints - Import Guards › No file outside factory imports InMemoryMessageRepository
+
+    ENOENT: no such file or directory, scandir 'C:\Users\hubne\Desktop\Feladat\teszt-feladat\__tests__\src'
+
+    [0m [90m 3 |[39m
+     [90m 4 |[39m [36mfunction[39m findFiles(dir[33m:[39m string[33m,[39m fileList[33m:[39m string[] [33m=[39m []) {
+    [31m[1m>[22m[39m[90m 5 |[39m   [36mconst[39m files [33m=[39m fs[33m.[39mreaddirSync(dir)[33m;[39m
+     [90m   |[39m                    [31m[1m^[22m[39m
+     [90m 6 |[39m   
+     [90m 7 |[39m   [36mfor[39m ([36mconst[39m file [36mof[39m files) {
+     [90m 8 |[39m     [36mconst[39m filePath [33m=[39m path[33m.[39mjoin(dir[33m,[39m file)[33m;[39m[0m
+
+      at findFiles (__tests__/unit/architecture/importGuards.test.ts:5:20)
+      at Object.<anonymous> (__tests__/unit/architecture/importGuards.test.ts:28:22)
+
+  ● Architectural Constraints - Import Guards › No file outside factory imports the concrete database client
+
+    ENOENT: no such file or directory, scandir 'C:\Users\hubne\Desktop\Feladat\teszt-feladat\__tests__\src'
+
+    [0m [90m 3 |[39m
+     [90m 4 |[39m [36mfunction[39m findFiles(dir[33m:[39m string[33m,[39m fileList[33m:[39m string[] [33m=[39m []) {
+    [31m[1m>[22m[39m[90m 5 |[39m   [36mconst[39m files [33m=[39m fs[33m.[39mreaddirSync(dir)[33m;[39m
+     [90m   |[39m                    [31m[1m^[22m[39m
+     [90m 6 |[39m   
+     [90m 7 |[39m   [36mfor[39m ([36mconst[39m file [36mof[39m files) {
+     [90m 8 |[39m     [36mconst[39m filePath [33m=[39m path[33m.[39mjoin(dir[33m,[39m file)[33m;[39m[0m
+
+      at findFiles (__tests__/unit/architecture/importGuards.test.ts:5:20)
+      at Object.<anonymous> (__tests__/unit/architecture/importGuards.test.ts:28:22)
+
+PASS unit-integration __tests__/unit/factory/messageRepositoryFactory.test.ts (8.812 s)
+PASS unit-integration __tests__/integration/api/messages.POST.test.ts (9.049 s)
+FAIL unit-integration __tests__/integration/api/messages.[id].DELETE.test.ts (9.293 s)
+  ● DELETE /api/messages/[id] › Returns 404 for a valid UUID that does not exist
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 404
+    Received: 400
+
+    [0m [90m 29 |[39m     [36mconst[39m id [33m=[39m [32m'123e4567-e89b-12d3-a456-426614174000'[39m[33m;[39m
+     [90m 30 |[39m     [36mconst[39m res [33m=[39m [36mawait[39m [33mDELETE[39m(makeReq([32m`http://localhost:3000/api/messages/${id}`[39m)[33m,[39m { params[33m:[39m [33mPromise[39m[33m.[39mresolve({ id }) })[33m;[39m
+    [31m[1m>[22m[39m[90m 31 |[39m     expect(res[33m.[39mstatus)[33m.[39mtoBe([35m404[39m)[33m;[39m
+     [90m    |[39m                        [31m[1m^[22m[39m
+     [90m 32 |[39m     [36mconst[39m body [33m=[39m [36mawait[39m res[33m.[39mjson()[33m;[39m
+     [90m 33 |[39m     expect(body)[33m.[39mtoHaveProperty([32m'error'[39m)[33m;[39m
+     [90m 34 |[39m   })[33m;[39m[0m
+
+      at Object.<anonymous> (__tests__/integration/api/messages.[id].DELETE.test.ts:31:24)
+
+PASS unit-integration __tests__/integration/api/messages.GET.test.ts (9.243 s)
+PASS components __tests__/component/MessageList.test.tsx (8.447 s)
+PASS components __tests__/component/MessageItem.test.tsx (8.744 s)
+PASS components __tests__/component/MessageForm.test.tsx (10.287 s)
+
+Test Suites: 2 failed, 10 passed, 12 total
+Tests:       4 failed, 117 passed, 121 total
+Snapshots:   0 total
+Time:        13.207 s
+Ran all test suites in 2 projects.
